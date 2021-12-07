@@ -215,7 +215,9 @@ public class AddressBook {
             out.writeObject(this.AdBook);
             out.close();
             fileOut.close();
+            System.out.println("");
             System.out.printf("Saved the Address Book! (File Name is Book.ser)");
+            System.out.println("");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -223,13 +225,13 @@ public class AddressBook {
 
     public void loadFile() {
         try {
-            FileInputStream fis = new FileInputStream("Book.ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            //Ignore this warning
-            this.AdBook = (ArrayList<Entries>) ois.readObject();
+            FileInputStream fileIn = new FileInputStream("Book.ser");
+            ObjectInputStream out2 = new ObjectInputStream(fileIn);
+            // Ignore this warning
+            this.AdBook = (ArrayList<Entries>) out2.readObject();
 
-            ois.close();
-            fis.close();
+            out2.close();
+            fileIn.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
             return;
@@ -238,7 +240,9 @@ public class AddressBook {
             c.printStackTrace();
             return;
         }
+        System.out.println("");
         System.out.println("Loaded the Address Book!");
+        System.out.println("");
     }
 
     public static void main(String[] args) {
